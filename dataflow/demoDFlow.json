@@ -15,15 +15,25 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "legacyDSQL",
+						"referenceName": "tblSalgt29k",
 						"type": "DatasetReference"
 					},
-					"name": "destSQL"
+					"name": "destSalGT29K"
+				},
+				{
+					"dataset": {
+						"referenceName": "destSQLTblGT29",
+						"type": "DatasetReference"
+					},
+					"name": "destSalLT29K"
 				}
 			],
 			"transformations": [
 				{
 					"name": "addIncrementColumn"
+				},
+				{
+					"name": "salarygt29k"
 				}
 			],
 			"scriptLines": [
@@ -37,7 +47,10 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srcBLOB",
 				"srcBLOB derive(Increment = esalary + 10000) ~> addIncrementColumn",
-				"addIncrementColumn sink(allowSchemaDrift: true,",
+				"addIncrementColumn split(esalary > 29000,",
+				"     esalary < 29000,",
+				"     disjoint: false) ~> salarygt29k@(salarygt29ksplit, salarylt29ksplit)",
+				"salarygt29k@salarygt29ksplit sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          eid as integer,",
@@ -53,14 +66,24 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     mapColumn(",
-				"          eid,",
-				"          ename,",
-				"          eage,",
-				"          esalary,",
-				"          IncrementedSalary = Increment",
-				"     )) ~> destSQL"
+				"     errorHandlingOption: 'stopOnFirstError') ~> destSalGT29K",
+				"salarygt29k@salarylt29ksplit sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          eid as integer,",
+				"          ename as string,",
+				"          eage as integer,",
+				"          esalary as integer,",
+				"          IncrementedSalary as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> destSalLT29K"
 			]
 		}
 	}
