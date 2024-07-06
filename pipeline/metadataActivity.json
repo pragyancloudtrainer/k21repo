@@ -5,6 +5,8 @@
 			{
 				"name": "demoGetMetaData",
 				"type": "GetMetadata",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Skipped",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -33,7 +35,7 @@
 					{
 						"activity": "demoGetMetaData",
 						"dependencyConditions": [
-							"Succeeded"
+							"Skipped"
 						]
 					}
 				],
