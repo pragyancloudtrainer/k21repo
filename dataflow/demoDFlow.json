@@ -49,7 +49,7 @@
 				"srcBLOB derive(Increment = esalary + 10000) ~> addIncrementColumn",
 				"addIncrementColumn split(esalary > 29000,",
 				"     esalary < 29000,",
-				"     disjoint: false) ~> salarygt29k@(salarygt29ksplit, salarylt29ksplit)",
+				"     disjoint: true) ~> salarygt29k@(salarygt29ksplit, salarylt29ksplit)",
 				"salarygt29k@salarygt29ksplit sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
