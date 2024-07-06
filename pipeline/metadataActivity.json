@@ -31,6 +31,8 @@
 			{
 				"name": "demoLookUp",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "demoGetMetaData",
