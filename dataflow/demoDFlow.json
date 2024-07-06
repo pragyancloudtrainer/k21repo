@@ -15,10 +15,10 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "srcDS",
+						"referenceName": "legacyDSQL",
 						"type": "DatasetReference"
 					},
-					"name": "destinationSQL"
+					"name": "destSQL"
 				}
 			],
 			"transformations": [
@@ -43,7 +43,8 @@
 				"          eid as integer,",
 				"          ename as string,",
 				"          eage as integer,",
-				"          esalary as integer",
+				"          esalary as integer,",
+				"          IncrementedSalary as integer",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -57,8 +58,9 @@
 				"          eid,",
 				"          ename,",
 				"          eage,",
-				"          esalary",
-				"     )) ~> destinationSQL"
+				"          esalary,",
+				"          IncrementedSalary = Increment",
+				"     )) ~> destSQL"
 			]
 		}
 	}
