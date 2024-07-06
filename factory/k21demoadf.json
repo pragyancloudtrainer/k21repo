@@ -1,0 +1,9 @@
+{
+	"name": "k21demoadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "442d3b77-9cc8-4256-aebd-8f710dd7d9d4",
+		"tenantId": "f090bfe9-f899-4224-836d-d7362a2353a7"
+	}
+}
