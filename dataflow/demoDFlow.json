@@ -6,18 +6,59 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "destBLOB",
+						"referenceName": "srcNewSorce",
 						"type": "DatasetReference"
 					},
 					"name": "srcBLOB"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "srcDS",
+						"type": "DatasetReference"
+					},
+					"name": "destinationSQL"
+				}
+			],
+			"transformations": [
+				{
+					"name": "addIncrementColumn"
+				}
+			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          eid as integer,",
+				"          ename as string,",
+				"          eage as integer,",
+				"          esalary as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srcBLOB"
+				"     ignoreNoFilesFound: false) ~> srcBLOB",
+				"srcBLOB derive(Increment = esalary + 10000) ~> addIncrementColumn",
+				"addIncrementColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          eid as integer,",
+				"          ename as string,",
+				"          eage as integer,",
+				"          esalary as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          eid,",
+				"          ename,",
+				"          eage,",
+				"          esalary",
+				"     )) ~> destinationSQL"
 			]
 		}
 	}

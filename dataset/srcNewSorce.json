@@ -1,0 +1,40 @@
+{
+	"name": "srcNewSorce",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "destBLOBStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dbo.employee.csv",
+				"container": "dwtemp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "eid",
+				"type": "String"
+			},
+			{
+				"name": "ename",
+				"type": "String"
+			},
+			{
+				"name": "eage",
+				"type": "String"
+			},
+			{
+				"name": "esalary",
+				"type": "String"
+			}
+		]
+	}
+}
