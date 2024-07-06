@@ -1,0 +1,36 @@
+{
+	"name": "srcDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "srcSQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "eid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ename",
+				"type": "varchar"
+			},
+			{
+				"name": "eage",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "esalary",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employee"
+		}
+	}
+}
