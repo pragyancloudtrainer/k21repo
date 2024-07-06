@@ -15,17 +15,17 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "tblSalgt29k",
+						"referenceName": "forGT29K",
 						"type": "DatasetReference"
 					},
-					"name": "destSalGT29K"
+					"name": "snkGT29k"
 				},
 				{
 					"dataset": {
-						"referenceName": "destSQLTblGT29",
+						"referenceName": "destSnklt29k",
 						"type": "DatasetReference"
 					},
-					"name": "destSalLT29K"
+					"name": "snkLT29k"
 				}
 			],
 			"transformations": [
@@ -47,7 +47,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srcBLOB",
 				"srcBLOB derive(Increment = esalary + 10000) ~> addIncrementColumn",
-				"addIncrementColumn split(esalary > 29000,",
+				"addIncrementColumn split(esalary >= 29000,",
 				"     esalary < 29000,",
 				"     disjoint: true) ~> salarygt29k@(salarygt29ksplit, salarylt29ksplit)",
 				"salarygt29k@salarygt29ksplit sink(allowSchemaDrift: true,",
@@ -73,7 +73,7 @@
 				"          eage,",
 				"          esalary,",
 				"          IncrementedSalary = Increment",
-				"     )) ~> destSalGT29K",
+				"     )) ~> snkGT29k",
 				"salarygt29k@salarylt29ksplit sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -97,7 +97,7 @@
 				"          eage,",
 				"          esalary,",
 				"          IncrementedSalary = Increment",
-				"     )) ~> destSalLT29K"
+				"     )) ~> snkLT29k"
 			]
 		}
 	}

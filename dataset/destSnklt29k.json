@@ -1,5 +1,5 @@
 {
-	"name": "destSQLTblGT29",
+	"name": "destSnklt29k",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "destSQLDB",
@@ -32,6 +32,10 @@
 				"type": "int",
 				"precision": 10
 			}
-		]
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "salarylt29K"
+		}
 	}
 }
