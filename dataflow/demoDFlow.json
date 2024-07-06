@@ -90,7 +90,14 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> destSalLT29K"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          eid,",
+				"          ename,",
+				"          eage,",
+				"          esalary,",
+				"          IncrementedSalary = Increment",
+				"     )) ~> destSalLT29K"
 			]
 		}
 	}
