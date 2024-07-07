@@ -105,11 +105,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"empname": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
