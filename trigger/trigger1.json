@@ -1,0 +1,24 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copyactivitypipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/dwtemp/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/9219fbc5-d118-416c-a7ce-62948d4754f1/resourceGroups/fordemorg/providers/Microsoft.Storage/storageAccounts/foradfdemopm",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
