@@ -1,0 +1,24 @@
+{
+	"name": "Scheduler",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "onpremtocloud",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2024-07-07T14:39:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
