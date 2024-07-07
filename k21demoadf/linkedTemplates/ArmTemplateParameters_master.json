@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "k21demoadf"
+		},
+		"destBLOBStorage_connectionString": {
+			"value": ""
+		},
+		"destSQLDB_connectionString": {
+			"value": ""
+		},
+		"srcSQLDB_password": {
+			"value": ""
+		},
+		"srcSQLDB_properties_typeProperties_server": {
+			"value": "demoservergm.database.windows.net"
+		},
+		"srcSQLDB_properties_typeProperties_database": {
+			"value": "demodb"
+		},
+		"srcSQLDB_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/9219fbc5-d118-416c-a7ce-62948d4754f1/resourceGroups/fordemorg/providers/Microsoft.Storage/storageAccounts/foradfdemopm"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
