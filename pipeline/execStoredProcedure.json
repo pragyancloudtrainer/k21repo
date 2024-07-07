@@ -1,0 +1,42 @@
+{
+	"name": "execStoredProcedure",
+	"properties": {
+		"activities": [
+			{
+				"name": "SalaryStoredProcedure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[myproc]",
+					"storedProcedureParameters": {
+						"salary": {
+							"value": {
+								"value": "@pipeline().parameters.salary",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "destSQLDB",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"salary": {
+				"type": "int"
+			}
+		},
+		"annotations": []
+	}
+}
